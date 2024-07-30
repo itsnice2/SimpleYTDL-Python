@@ -97,12 +97,18 @@ def window():
 
             textfield.setText("")
             textfield.append("Download wird gestartet\n")
-            myCommand = "youtube-dl " + youtubeLink.text() + newFileName + audio
+            myCommand = "python3 ~/Downloads/youtube-dl " + youtubeLink.text() + newFileName + audio
             textfield.append(myCommand)
             os.system(myCommand)
             textfield.append("\nFertig!")
 
             return
+            
+        # Linux install
+        # 	sudo curl -L https://github.com/ytdl-org/ytdl-nightly/releases/download/2024.07.25/youtube-dl -o ~/Downloads/youtube-dl
+        # 	sudo chmod a+rx ~/Downloads/youtube-dl
+        # Aufruf mit
+        # 	python3 youtube-dl VIDEO-LINK
 
         #C:\Users\ea-da\Documents\GitHub\SimpleYouTubeDownloader\settings.cfg
         #C:\Users\ea-da\Desktop\youtube-dl\youtube-dl.exe
