@@ -1,6 +1,8 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QWidget #QMainWindow
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import * #QApplication, QWidget #QMainWindow
 import sys
+import webbrowser
+
 #import pathlib
 #import subprocess
 #from contextlib import redirect_stdout
@@ -11,6 +13,15 @@ import sys
 #-x --audio-format mp3
 
 def window():
+
+    def checkOS():
+        print("Hallo")
+
+    def openYTDLGit():
+        webbrowser.open('https://github.com/ytdl-org/ytdl-nightly/releases/')
+
+    def openYTDL():
+        webbrowser.open('https://github.com/itsnice2/SimpleYTDL-Python')
 
     def checkBoxCheck():
         if audioOnly.checkState() == 2:
@@ -45,12 +56,14 @@ def window():
     WIDTH = 600
     HEIGHT = 270
 
-    # Position and Size
+    ##### A P P - W I N D O W ################################################################################################
+
     win.setGeometry(400,400,WIDTH,HEIGHT)
     win.setFixedSize(WIDTH, HEIGHT)
     win.setWindowTitle("Simple YouTube-Downloader")
+    win.setWindowIcon(QtGui.QIcon('ytdl-logo.png'))
 
-    ##### P R O CE S S ##########################################################################################################
+    ##### P R O C E S S ######################################################################################################
 
     process = QtCore.QProcess(win)
     process.setProgram("youtube-dl.exe")
@@ -98,11 +111,21 @@ def window():
     button_exit.clicked.connect(win.close)
     button_exit.move(WIDTH - 90,HEIGHT - 60)
 
+    button_ytdl_git = QtWidgets.QPushButton(win)
+    button_ytdl_git.setText("youtube-dl\nherunterladen")
+    button_ytdl_git.clicked.connect(openYTDLGit)
+    button_ytdl_git.move(20, 130)
+
+    button_ytdl = QtWidgets.QPushButton(win)
+    button_ytdl.setText("SimpleYTDL\nbesuchen")
+    button_ytdl.clicked.connect(openYTDL)
+    button_ytdl.move(20, 190)
+
     ##### C H E C K B O X #######################################################################################################
 
     audioOnly = QtWidgets.QCheckBox(win)
     audioOnly.setText("Nur Audio")
-    audioOnly.move(100,100)
+    audioOnly.move(100,85)
     audioOnly.stateChanged.connect(checkBoxCheck)
 
     ##### E D I T #######################################################################################################
