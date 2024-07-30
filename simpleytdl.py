@@ -95,7 +95,13 @@ def window():
             else:\
                 audio = ""
 
-            textfield.setText(str(pathlib.Path().resolve()) + "/youtube-dl " + youtubeLink.text() + newFileName + audio)
+            textfield.setText("")
+            textfield.append("Download wird gestartet\n")
+            myCommand = "youtube-dl " + youtubeLink.text() + newFileName + audio
+            textfield.append(myCommand)
+            os.system(myCommand)
+            textfield.append("\nFertig!")
+
             return
 
         #C:\Users\ea-da\Documents\GitHub\SimpleYouTubeDownloader\settings.cfg
