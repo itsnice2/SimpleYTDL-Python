@@ -1,12 +1,11 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import * #QApplication, QWidget #QMainWindow
+from PyQt5.QtWidgets import * 
 import sys
 import webbrowser
 import platform
 import os
 import pathlib
-#import subprocess
-#from contextlib import redirect_stdout
+
 
 def window():
 
@@ -38,9 +37,6 @@ def window():
             downloadFolder = os.path.join(os.path.expanduser('~'), 'Downloads')
 
         return system
-
-    #def openYTDLGit():
-    #    webbrowser.open('https://github.com/ytdl-org/ytdl-nightly/releases/latest')
 
     def openYTDL():
         webbrowser.open('https://github.com/itsnice2/SimpleYTDL-Python')
@@ -103,19 +99,6 @@ def window():
             textfield.append("\nFertig!")
 
             return
-            
-        # Linux install
-        # 	sudo curl -L https://github.com/ytdl-org/ytdl-nightly/releases/download/2024.07.25/youtube-dl -o ~/Downloads/youtube-dl
-        # 	sudo chmod a+rx ~/Downloads/youtube-dl
-        # Aufruf mit
-        # 	python3 youtube-dl VIDEO-LINK
-        # https://github.com/ytdl-org/ytdl-nightly/releases/latest/ -> führt zur aktuellen Datei
-
-        #C:\Users\ea-da\Documents\GitHub\SimpleYouTubeDownloader\settings.cfg
-        #C:\Users\ea-da\Desktop\youtube-dl\youtube-dl.exe
-        #-o
-        #-x --audio-format mp3
-
 
 
     # initialize the Application
