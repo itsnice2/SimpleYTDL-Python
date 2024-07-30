@@ -5,7 +5,7 @@ import webbrowser
 import platform
 import os
 import pathlib
-import subprocess
+#import subprocess
 #from contextlib import redirect_stdout
 
 def window():
@@ -39,8 +39,8 @@ def window():
 
         return system
 
-    def openYTDLGit():
-        webbrowser.open('https://github.com/ytdl-org/ytdl-nightly/releases/')
+    #def openYTDLGit():
+    #    webbrowser.open('https://github.com/ytdl-org/ytdl-nightly/releases/latest')
 
     def openYTDL():
         webbrowser.open('https://github.com/itsnice2/SimpleYTDL-Python')
@@ -109,6 +109,7 @@ def window():
         # 	sudo chmod a+rx ~/Downloads/youtube-dl
         # Aufruf mit
         # 	python3 youtube-dl VIDEO-LINK
+        # https://github.com/ytdl-org/ytdl-nightly/releases/latest/ -> führt zur aktuellen Datei
 
         #C:\Users\ea-da\Documents\GitHub\SimpleYouTubeDownloader\settings.cfg
         #C:\Users\ea-da\Desktop\youtube-dl\youtube-dl.exe
@@ -201,15 +202,10 @@ def window():
     button_exit.clicked.connect(win.close)
     button_exit.move(WIDTH - 90,HEIGHT - 60)
 
-    button_ytdl_git = QtWidgets.QPushButton(win)
-    button_ytdl_git.setText("youtube-dl\nherunterladen")
-    button_ytdl_git.clicked.connect(openYTDLGit)
-    button_ytdl_git.move(20, 130)
-
     button_ytdl = QtWidgets.QPushButton(win)
-    button_ytdl.setText("SimpleYTDL\nbesuchen")
+    button_ytdl.setText("Hilfe")
     button_ytdl.clicked.connect(openYTDL)
-    button_ytdl.move(20, 190)
+    button_ytdl.move(510, 130)
 
     ##### C H E C K B O X #######################################################################################################
 
