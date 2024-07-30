@@ -32,10 +32,8 @@ Unter Linux ganz einfach mit
 ```
 sudo apt install ffmpeg
 ```
-Für Windows diese Seite besuchen:
-```
-https://www.gyan.dev/ffmpeg/builds
-```
+Für Windows diese Seite besuchen: https://www.gyan.dev/ffmpeg/builds
+
 Unter **release builds**
 ```
 ffmpeg-release-full.7z
