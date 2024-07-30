@@ -5,7 +5,7 @@ import webbrowser
 import platform
 import os
 import pathlib
-#import subprocess
+import subprocess
 #from contextlib import redirect_stdout
 
 def window():
@@ -33,10 +33,8 @@ def window():
             downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
             with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
                 location = winreg.QueryValueEx(key, downloads_guid)[0]
-            #return location
             downloadFolder = location
-        else:
-            #return os.path.join(os.path.expanduser('~'), 'Downloads')
+        elif system == 'Linux':
             downloadFolder = os.path.join(os.path.expanduser('~'), 'Downloads')
 
         return system
@@ -47,6 +45,16 @@ def window():
     def openYTDL():
         webbrowser.open('https://github.com/itsnice2/SimpleYTDL-Python')
 
+    def openFolder():
+        
+        path = downloadPath.text()
+        path = os.path.realpath(path)
+
+        if checkOS() == "Windows":
+            os.startfile(path)
+        elif checkOS() == "Linux":
+            os.system(f'start {path}')
+
     def checkBoxCheck():
         if audioOnly.checkState() == 2:
             fileEnding.setText(".mp3")
@@ -55,11 +63,6 @@ def window():
 
     @QtCore.pyqtSlot()
     def downloadVideo():
-
-        newFileName = ""
-        audio = ""
-        dlPath = ""
-        
 
         if myOS == "Windows":
             if newName.text() != "":
@@ -71,8 +74,15 @@ def window():
                 audio = " -x --audio-format mp3"
             else:\
                 audio = ""
+            
+            textfield.setText("")
+            textfield.append("Download wird gestartet\n")
+            myCommand = str(pathlib.Path().resolve()) + "\\youtube-dl.exe " + youtubeLink.text() + newFileName + audio
+            textfield.append(myCommand)
+            os.system(myCommand)
+            textfield.append("\nFertig!")
 
-            textfield.setText(str(pathlib.Path().resolve()) + "\\youtube-dl.exe " + youtubeLink.text() + newFileName + audio)
+            return
 
         if myOS == "Linux":
             if newName.text() != "":
@@ -86,28 +96,13 @@ def window():
                 audio = ""
 
             textfield.setText(str(pathlib.Path().resolve()) + "/youtube-dl " + youtubeLink.text() + newFileName + audio)
+            return
 
         #C:\Users\ea-da\Documents\GitHub\SimpleYouTubeDownloader\settings.cfg
         #C:\Users\ea-da\Desktop\youtube-dl\youtube-dl.exe
         #-o
         #-x --audio-format mp3
 
-        
-
-        """
-        if myOS == "Windows":
-            textfield.setText("")
-            
-            process.setArguments(youtubeLink.text())
-
-            process.start()
-            textfield.append(process.readAllStandardOutput().data().decode())
-            process.kill()
-
-            textfield.append("Download abgeschlossen")
-        else:
-            print("")
-        """
 
 
     # initialize the Application
@@ -183,6 +178,11 @@ def window():
     button.setText("Download")
     button.clicked.connect(downloadVideo)
     button.move(510,20)
+
+    button_open_folder = QtWidgets.QPushButton(win)
+    button_open_folder.setText("Ordner öffnen")
+    button_open_folder.clicked.connect(openFolder)
+    button_open_folder.move(510,50)
 
     button_exit = QtWidgets.QPushButton(win)
     button_exit.setText("Beenden")
