@@ -47,4 +47,18 @@ setx /m PATH "C:\ffmpeg\bin;%PATH%"
 eintippen und ENTER drücken. Fertig.
 Bei Problemen hilft diese Anleitung: https://www.wikihow.com/Install-FFmpeg-on-Windows
 
-### youtube-dl
+### youtube-dl (Windows)
+Auf dieser Seite https://github.com/ytdl-org/ytdl-nightly/releases/latest die **youtube-dl.exe** herunterladen, und in den gleichen Ordner kopieren wie den Simple YouTube-Downloader. Fertig
+
+### youtube-dl (Linux)
+Unter https://github.com/ytdl-org/ytdl-nightly/releases/latest den Link zu **youtube-dl** kopieren, und hier den alten ersetzen:
+```
+sudo curl -L https://github.com/ytdl-org/ytdl-nightly/releases/download/2024.07.25/youtube-dl -o ~/Downloads/youtube-dl
+sudo chmod a+rx ~/Downloads/youtube-dl
+```
+Eventuell noch in der ersten und zweiten Zeile den Speicherort ändern, falls die Datei woanders gespeichert werden soll. Diese Kommandos laden die aktuelle Datei herunter, und machen sie ausführbar.
+Zum Testen kann man
+```
+python3 youtube-dl HIER-EINEN-YOUTUBE-LINK
+```
+eingeben. Wenn alles erfolgreich lief, kann man mit diesem Befehl über die Konsole ein Video herunterladen
